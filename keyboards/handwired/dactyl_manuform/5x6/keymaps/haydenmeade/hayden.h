@@ -1,37 +1,19 @@
 #pragma once
 
-#if (!defined(LAYOUT) && defined(KEYMAP))
-#    define LAYOUT KEYMAP
-#endif
-
-#undef MK_MOMENTARY_ACCEL
-#define MK_3_SPEED 1
-
 #define LAYOUT_5x6_wrapper(...)             LAYOUT_5x6(__VA_ARGS__)
 
-#define KC_MLSF OSM(MOD_LSFT)
-#define KC_MRSF OSM(MOD_RSFT)
-
-#define OS_LGUI OSM(MOD_LGUI)
-#define OS_RGUI OSM(MOD_RGUI)
-#define OS_LSFT OSM(MOD_LSFT)
-#define OS_RSFT OSM(MOD_RSFT)
-#define OS_LCTL OSM(MOD_LCTL)
-#define OS_RCTL OSM(MOD_RCTL)
-#define OS_LALT OSM(MOD_LALT)
-#define OS_RALT OSM(MOD_RALT)
-#define OS_MEH  OSM(MOD_MEH)
-#define OS_HYPR OSM(MOD_HYPR)
-#define MOUSE_L LSFT(KC_WH_D)
-#define MOUSE_R LSFT(KC_WH_U)
-#define OS_LOCK LGUI(KC_L)
-
-// layout parts for easy reuse between keyboard keymaps
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 #define ________________NUMBERS_L__________________  KC_1, KC_2, KC_3, KC_4, KC_5
 #define ________________NUMBERS_R__________________  KC_6, KC_7, KC_8, KC_9, KC_0
+
+// Programming symbols.
+// ,-----+-----+-----+-----+---------------,   ,-----+-----+-----+-----+---------------,
+// |  `/~  |  @/$  |  {/<  |  (/[  |  !/?  |   |  &/|  |  (/[  |  {/>  |  #/%  |  */^  |
+// ,-----+-----+-----+-----+---------------,   ,-----+-----+-----+-----+---------------,
+#define __________________PROG_L___________________  TD(GRV_TILD) , TD(AT_DLR), TD(LCBR_LABK), TD(LPRN_LBRC), TD(EXLM_QUES)
+#define __________________PROG_R___________________  TD(APMR_PIPE), TD(RPRN_RBRC), TD(RCBR_RABK), TD(HASH_PERC), TD(ASTR_CIRC)
 
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // | F1  | F2  | F3  | F4  | F5  |   | F6  | F7  | F8  | F9  | F10 |
@@ -54,9 +36,6 @@
 #define _________________QWERTY_R2_________________  KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN
 #define _________________QWERTY_R3_________________  KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH
 
-#define _____________MOD_QWERTY_L2_________________  CTL_T(KC_A), SFT_T(KC_S), GUI_T(KC_D), ALT_T(KC_F), KC_G
-#define _____________MOD_QWERTY_R2_________________  KC_H       , ALT_T(KC_J), GUI_T(KC_K), SFT_T(KC_L), CTL_T(KC_SCLN)
-
 // Dvorak
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // |  '  |  ,  |  .  |  P  |  Y  |   |  F  |  G  |  C  |  R  |  L  |
@@ -73,9 +52,6 @@
 #define _________________DVORAK_R2_________________  KC_D   , KC_H   , KC_T   , KC_N   , KC_S
 #define _________________DVORAK_R3_________________  KC_B   , KC_M   , KC_W   , KC_V   , KC_Z
 
-#define _____________MOD_DVORAK_L2_________________  CTL_T(KC_A), SFT_T(KC_S), GUI_T(KC_D), ALT_T(KC_F), KC_G
-#define _____________MOD_DVORAK_R2_________________  KC_H       , ALT_T(KC_J), GUI_T(KC_K), SFT_T(KC_L), CTL_T(KC_SCLN)
-
 // Colemak DHm
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  ;  |
@@ -91,9 +67,6 @@
 #define _________________COLEMAKDHM_R1_________________  KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN
 #define _________________COLEMAKDHM_R2_________________  KC_M   , KC_N   , KC_E   , KC_I   , KC_O
 #define _________________COLEMAKDHM_R3_________________  KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH
-
-#define _____________MOD_COLEMAKDHM_L2_________________  CTL_T(KC_A), SFT_T(KC_S), GUI_T(KC_D), ALT_T(KC_F), KC_G
-#define _____________MOD_COLEMAKDHM_R2_________________  KC_H       , ALT_T(KC_J), GUI_T(KC_K), SFT_T(KC_L), CTL_T(KC_SCLN)
 
 
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
