@@ -14,14 +14,14 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [DVORAK] = LAYOUT_5x6_wrapper(
-     KC_LGUI , __________________PROG_L___________________,                          __________________PROG_R___________________, KC_MINS,
-     KC_TAB  , _________________DVORAK_L1_________________,                          _________________DVORAK_R1_________________, KC_BSLS,
-     KC_ESC  , _________________DVORAK_L2_________________,                          _________________DVORAK_R2_________________, KC_QUOT,
-     MOD_LSFT , _________________DVORAK_L3_________________,                          _________________DVORAK_R3_________________, MOD_RSFT,
-                      KC_EQL,KC_RGHT,                                                       KC_UP, KC_DOWN,
-                                     KC_BSPC, KC_SPC,                         KC_TAB    , KC_ENT,
-                                     KC_LGUI, MO(NUMPAD),                     MO(NUMPAD), TT(MOUSE),
-                                     KC_DEL, KC_GRV,                           KC_LALT  , _______
+     KC_LGUI        , __________________PROG_L___________________,                          __________________PROG_R___________________, KC_MINS,
+     KC_TAB         , _________________DVORAK_L1_________________,                          _________________DVORAK_R1_________________, KC_BSLS,
+     CTL_T(KC_ESC)  , _________________DVORAK_L2_________________,                          _________________DVORAK_R2_________________, KC_QUOT,
+     MOD_LSFT       , _________________DVORAK_L3_________________,                          _________________DVORAK_R3_________________, MOD_RSFT,
+                                 KC_EQL,KC_RGHT,                                                       KC_UP, KC_DOWN,
+                                                  KC_BSPC, KC_SPC,                         KC_TAB    , KC_ENT,
+                                                  KC_LGUI, MO(NUMPAD),                     MO(NUMPAD), TT(MOUSE),
+                                                  MOD_LCTL, _______,                           KC_LALT  , _______
   ),
   [NUMPAD] = LAYOUT_5x6_wrapper(
        KC_F12 , ______________________F_L__________________,                      ______________________F_R__________________, KC_F11,
