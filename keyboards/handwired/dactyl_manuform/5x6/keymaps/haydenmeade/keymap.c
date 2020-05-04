@@ -8,20 +8,19 @@
 #include "tap_dance/mod_tap_layer_dances/dot_comm.c"
 #include "tap_dance/mod_tap_layer_dances/quot_dquot.c"
 #include "tap_dance/mod_tap_layer_dances/scln_coln.c"
-#include "tap_dance/mod_tap_layer_dances/h_mouse_gui.c"
 #include "tap_dance/tap_dance_actions.c"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [DVORAK] = LAYOUT_5x6_wrapper(
-     KC_LGUI        , __________________PROG_L___________________,                          __________________PROG_R___________________, KC_MINS,
-     KC_TAB         , _________________DVORAK_L1_________________,                          _________________DVORAK_R1_________________, KC_BSLS,
-     CTL_T(KC_ESC)  , _________________DVORAK_L2_________________,                          _________________DVORAK_R2_________________, KC_QUOT,
-     MOD_LSFT       , _________________DVORAK_L3_________________,                          _________________DVORAK_R3_________________, MOD_RSFT,
-                                 KC_EQL,KC_RGHT,                                                       KC_UP, KC_DOWN,
-                                                  KC_BSPC, KC_SPC,                         KC_TAB    , KC_ENT,
-                                                  KC_LGUI, MO(NUMPAD),                     MO(NUMPAD), TT(MOUSE),
-                                                  MOD_LCTL, _______,                           KC_LALT  , _______
+     _______  , __________________PROG_TD_L________________,                          __________________PROG_TD_R________________, KC_DEL ,
+     _______  , _________________DVORAK_L1_________________,                          _________________DVORAK_R1_________________, KC_BSLS,
+     KC_UNDS  , _________________DVORAK_L2_________________,                          _________________DVORAK_R2_________________, KC_MINS,
+     KC_LSPO  , _________________DVORAK_L3_________________,                          _________________DVORAK_R3_________________, KC_RSPC,
+                            KC_HOME,KC_RGHT,                                                       KC_UP, KC_END,
+                                             KC_BSPC, KC_SPC,                         KC_TAB    , KC_ENT,
+                                             CTL_ESC, MO(NUMPAD),                     MO(NUMPAD), KC_EQL,
+                                             KC_LGUI, _______,                        LT(GAMING, KC_DEL)  , KC_RALT
   ),
   [NUMPAD] = LAYOUT_5x6_wrapper(
        KC_F12 , ______________________F_L__________________,                      ______________________F_R__________________, KC_F11,
@@ -33,16 +32,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                RESET  , _______,            _______, _______,
                                                _______, _______,            _______, _______
   ),
-  [MOUSE] = LAYOUT_5x6_wrapper(
-
-     _______, _______, _______, _______, _______, _______,                        _______, _______, _______, _______, _______, _______,
-     _______, _______, _______, _______, _______, _______,                        _______, _______, _______, _______, _______, _______,
-     _______, _________________DVORAK_L2_________________,                        _______, _______, _______, _______, _______, _______,
-     _______, _______, _______, _______, _______, _______,                        _______, _______, _______, _______, _______, _______,
-                       _______, _______,                                                            _______, _______,
-                                             _______, _______,            _______, _______,
-                                             KC_LCTL, _______,            _______, _______,
-                                             _______, _______,            _______, _______
+  [GAMING] = LAYOUT_5x6_wrapper(
+     _______  , ________________NUMBERS_L__________________,                          ________________NUMBERS_R__________________, KC_BSPC,
+     KC_TAB   , _________________QWERTY_L1_________________,                          _________________QWERTY_R1_________________, _______,
+     _______  , _________________QWERTY_L2_________________,                          _________________QWERTY_R2_________________, _______,
+     MOD_LSFT , _________________QWERTY_L3_________________,                          _________________QWERTY_R3_________________, _______,
+                            KC_LEFT,KC_RGHT,                                                       KC_UP, KC_DOWN,
+                                             KC_ENT  , KC_SPC    ,                    KC_TAB    , KC_ENT,
+                                             KC_LCTL , MO(NUMPAD),                    MO(NUMPAD), KC_EQL,
+                                             MOD_LALT, TG(DVORAK),                    _______   , KC_BSPC
   ),
 };
 

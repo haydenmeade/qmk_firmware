@@ -2,6 +2,9 @@
 
 #define LAYOUT_5x6_wrapper(...)             LAYOUT_5x6(__VA_ARGS__)
 
+// Ctrl when held, esc when pressed.
+#define CTL_ESC CTL_T(KC_ESC)
+
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
@@ -12,8 +15,8 @@
 // ,-----+-----+-----+-----+---------------,   ,-----+-----+-----+-----+---------------,
 // |  `/~  |  @/$  |  {/<  |  (/[  |  !/?  |   |  &/|  |  (/[  |  {/>  |  #/%  |  */^  |
 // ,-----+-----+-----+-----+---------------,   ,-----+-----+-----+-----+---------------,
-#define __________________PROG_L___________________  TD(GRV_TILD) , TD(AT_DLR), TD(LCBR_LABK), TD(LPRN_LBRC), TD(EXLM_QUES)
-#define __________________PROG_R___________________  TD(APMR_PIPE), TD(RPRN_RBRC), TD(RCBR_RABK), TD(HASH_PERC), TD(ASTR_CIRC)
+#define __________________PROG_TD_L________________  TD(GRV_TILD) , TD(AT_DLR), TD(LCBR_LABK), TD(LPRN_LBRC), TD(EXLM_QUES)
+#define __________________PROG_TD_R________________  TD(APMR_PIPE), TD(RPRN_RBRC), TD(RCBR_RABK), TD(HASH_PERC), TD(ASTR_CIRC)
 
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // | F1  | F2  | F3  | F4  | F5  |   | F6  | F7  | F8  | F9  | F10 |

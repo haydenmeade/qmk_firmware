@@ -16,5 +16,4 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [SCLN_COLN] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, scln_coln_finished,       scln_coln_reset,      DANCING_TERM),
     [QUOT_DQUO] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, quot_dquot_finished,      quot_dquot_reset,     DANCING_TERM),
     [DOT_COMM]  = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dot_comm_finished,        dot_comm_reset,       DANCING_TERM),
-    [H_MOU_GUI] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, h_mouse_gui_finished,     h_mouse_gui_reset,    DANCING_TERM),
 };
