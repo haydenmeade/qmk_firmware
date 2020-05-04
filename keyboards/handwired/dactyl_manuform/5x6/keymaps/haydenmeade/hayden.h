@@ -1,6 +1,12 @@
 #pragma once
 
 #define LAYOUT_5x6_wrapper(...)             LAYOUT_5x6(__VA_ARGS__)
+// TODO
+// Test out programming symbol row vs programming symbol layer
+// Need a print screen key
+// Function layer with volume keys / media controls
+// Create the colemak layout
+// Try a mouse layer
 
 // Ctrl when held, esc when pressed.
 #define CTL_ESC CTL_T(KC_ESC)
