@@ -13,14 +13,14 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [DVORAK] = LAYOUT_5x6_wrapper(
-     _______  , __________________PROG_TD_L________________,                          __________________PROG_TD_R________________, KC_DEL ,
-     _______  , _________________DVORAK_L1_________________,                          _________________DVORAK_R1_________________, KC_BSLS,
-     KC_UNDS  , _________________DVORAK_L2_________________,                          _________________DVORAK_R2_________________, KC_MINS,
-     KC_LSPO  , _________________DVORAK_L3_________________,                          _________________DVORAK_R3_________________, KC_RSPC,
-                            KC_HOME,KC_RGHT,                                                       KC_UP, KC_END,
-                                             KC_BSPC, KC_SPC,                         KC_TAB    , KC_ENT,
+     KC_CAPS  , __________________PROG_TD_L________________,                          __________________PROG_TD_R________________, KC_DEL ,
+     KC_TAB  , _________________DVORAK_L1_________________,                          _________________DVORAK_R1_________________, KC_BSLS,
+     KC_LSPO  , _________________DVORAK_L2_________________,                          _________________DVORAK_R2_________________, KC_MINS,
+     KC_LGUI  , _________________DVORAK_L3_________________,                          _________________DVORAK_R3_________________, KC_RSPC,
+                            KC_HOME,KC_RGHT,                                                       KC_UP, KC_A,
+                                             KC_SPC, KC_BSPC,                         KC_TAB    , KC_ENT,
                                              CTL_ESC, MO(NUMPAD),                     MO(NUMPAD), KC_EQL,
-                                             KC_LGUI, _______,                        LT(GAMING, KC_DEL)  , KC_RALT
+                                             KC_LALT, KC_A,                        LT(GAMING, KC_DEL)  , KC_RALT
   ),
   [NUMPAD] = LAYOUT_5x6_wrapper(
        KC_F12 , ______________________F_L__________________,                      ______________________F_R__________________, KC_F11,
@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______, _________________SYMBOL_L3_________________,                      _________________SYMBOL_R3_________________, _______,
                        _______, _______,                                                          KC_P0 , KC_PDOT,
                                                _______, _______,            _______, _______,
-                                               RESET  , _______,            _______, _______,
+                                               RESET  , _______,            _______, RESET  ,
                                                _______, _______,            _______, _______
   ),
   [GAMING] = LAYOUT_5x6_wrapper(
@@ -43,5 +43,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                              MOD_LALT, TG(DVORAK),                    _______   , KC_BSPC
   ),
 };
-
-
