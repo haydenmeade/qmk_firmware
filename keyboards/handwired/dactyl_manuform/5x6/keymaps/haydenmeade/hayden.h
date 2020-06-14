@@ -10,6 +10,88 @@
 
 // Ctrl when held, esc when pressed.
 #define CTL_ESC CTL_T(KC_ESC)
+#ifndef ROLLOVER
+#define HOME_Q  GUI_T(KC_Q)
+#define HOME_H  CTL_T(KC_H)
+#define HOME_E  ALT_T(KC_E)
+#define HOME_A  SFT_T(KC_A)
+#define HOME_T  SFT_T(KC_T)
+#define HOME_R  ALT_T(KC_R)
+#define HOME_S  CTL_T(KC_S)
+#define HOME_W  GUI_T(KC_W)
+#endif
+#ifndef UPPER_HEX
+#define ACT_E   MT   (MOD_LALT | MOD_LCTL, KC_E)
+#define AT_B    ALT_T(KC_B)
+#define CT_C    CTL_T(KC_C)
+#define ST_A    SFT_T(KC_A)
+#endif
+
+#include "tapdance.h"
+
+// keycodes
+#define ___x___ KC_TRNS
+#define ___fn__ KC_TRNS
+
+
+#ifdef HASKELL
+#define HS_GT   TD_GT
+#define HS_LT   TD_LT
+#else
+#define HS_GT   KC_GT
+#define HS_LT   KC_LT
+#endif
+
+#define COPY    LCTL(KC_C)
+#define CUT     LCTL(KC_X)
+#define EOT     LCTL(KC_D)
+#define NAK     LCTL(KC_U)
+#define PASTE   TD_PASTE
+#define UNDO    LCTL(KC_Z)
+#define XCOPY   LCTL(LSFT(KC_C))
+#define XPASTE  TD_XPASTE
+
+#define LT_BSPC LT  (_MOUSE, KC_BSPC)
+#define LT_ESC  LT  (_FNCKEY, KC_ESC)
+#ifdef ROLLOVER
+#define LT_ENT  MO  (_EDIT)    // plus mod_roll() -> LT(_EDIT, KC_ENT)
+#define LT_I    MO  (_REGEX)   // plus mod_roll() -> LT(_REGEX, KC_I)
+#define LT_SPC  MO  (_SYMGUI)  // plus mod_roll() -> LT(_SYMGUI, KC_SPC)
+#else
+#define LT_ENT  LT  (_EDIT, KC_ENT)
+#define LT_I    LT  (_REGEX, KC_I)
+#define LT_SPC  LT  (_SYMGUI, KC_SPC)
+#endif
+#define LT_TAB  LT  (_NUMBER, KC_TAB)
+#define TT_TAB  LT  (_NUMBER, KC_TAB)
+#define OS_ALT  OSM (MOD_LALT)
+#define OS_CTL  OSM (MOD_LCTL)
+#define OS_GUI  OSM (MOD_LGUI)
+#define OS_SFT  OSM (MOD_LSFT)
+
+#define TGL_TL  TT  (_TTFNCKEY)
+#define TGL_HL  TT  (_TTCAPS)
+#define TGL_BL  TT  (_TTMOUSE)
+#define TGL_TR  TT  (_TTREGEX)
+#define TGL_HR  TT  (_TTNUMBER)
+#define TGL_BR  TT  (_TTCURSOR)
+#ifdef PLANCK
+#define MO_ADJ  MO  (_ADJUST)
+#endif
+
+#ifdef TEST
+#define DEBUG   TG  (_TEST)
+#else
+#define DEBUG   RESET
+#endif
+
+#define ________MODIFIERS_________ KC_LGUI, KC_LCTL, KC_LSFT, KC_LALT
+
+// ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
+// |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
+// ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
+#define ________________NUMBERS_L__________________  KC_1, KC_2, KC_3, KC_4, KC_5
+#define ________________NUMBERS_R__________________  KC_6, KC_7, KC_8, KC_9, KC_0
 
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
@@ -77,6 +159,20 @@
 #define _________________COLEMAKDHM_R2_________________  KC_M   , KC_N   , KC_E   , KC_I   , KC_O
 #define _________________COLEMAKDHM_R3_________________  KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH
 
+// ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
+// |  !  |  @  |  {  |  }  |  _  |   |  \  |  7  |  8  |  9  |     |
+// ,-----+-----+-----x-----x-----,   ,-----x-----x-----+-----+-----,
+// |  #  |  $  |  (  |  )  |  -  |   |  .  |  4  |  5  |  6  |  |  |
+// ,-----+-----+-----x-----x-----,   ,-----x-----x-----+-----+-----,
+// |  %  |  ^  |  [  |  ]  |  +  |   |  *  |  1  |  2  |  3  |  /  |
+// ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
+#define _________________NUMPAD_L1_________________  KC_EXLM, KC_AT  , KC_LCBR, KC_RCBR, KC_UNDS
+#define _________________NUMPAD_L2_________________  KC_HASH, KC_DLR , KC_LPRN, KC_RPRN, KC_MINS
+#define _________________NUMPAD_L3_________________  KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_PLUS
+
+#define _________________NUMPAD_R1_________________  KC_BSLS, KC_P7, KC_P8 , KC_P9, KC_PAST
+#define _________________NUMPAD_R2_________________  KC_EQL , KC_P4, KC_P5, KC_P6, KC_PPLS
+#define _________________NUMPAD_R3_________________  KC_ASTR, KC_P1, KC_P2, KC_P3, KC_PMNS
 
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // |  !  |  @  |  {  |  }  |  _  |   |  \  |  7  |  8  |  9  |     |
