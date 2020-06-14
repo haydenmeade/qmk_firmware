@@ -48,36 +48,8 @@
 // Hardware
 // ═════════════════════════════════════════════════════════════════════════════
 
-#ifdef CORNE
-#define KEYMAP LAYOUT
-#include QMK_KEYBOARD_H
-#ifdef RGBLIGHT_ENABLE
-//Following line allows macro to read current RGB settings
-extern rgblight_config_t rgblight_config;
-#endif
-extern uint8_t is_master;
-#endif
 
-#ifdef CHIMERA
-// #include "config.h"
-#include "chimera_ergo_42.h"
-// #include "action_layer.h"
-// #include "eeconfig.h"
-// extern keymap_config_t keymap_config;
-#endif
-
-#ifdef PLANCK
-#include "config.h"
-#include "planck.h"
-#include "action_layer.h"
-#ifdef STENO_ENABLE
-#include "keymap_steno.h"
-#endif
-#ifdef AUDIO_ENABLE
-#include "audio.h"
-#endif
-#include "eeconfig.h"
-#endif
+#include "5x6.h"
 
 // Keymaps
 // ═════════════════════════════════════════════════════════════════════════════
@@ -99,10 +71,6 @@ enum keyboard_layers {
  ,_TTMOUSE
  ,_TTNUMBER
  ,_TTREGEX
-#ifdef PLANCK
- ,_PLOVER
- ,_ADJUST
-#endif
 #ifdef TEST
  ,_TEST
 #endif
@@ -111,11 +79,6 @@ enum keyboard_layers {
 
 enum keyboard_keycodes {
   BASE = SAFE_RANGE
-#ifdef PLANCK
- ,BASE1
- ,BASE2
- ,PLOVER
-#endif
 #ifdef ROLLOVER
  ,HOME_Q  // pseudo GUI_T(KC_A)
  ,HOME_H  // pseudo CTL_T(KC_H)
@@ -125,10 +88,6 @@ enum keyboard_keycodes {
  ,HOME_R  // pseudo ALT_T(KC_R)
  ,HOME_S  // pseudo CTL_T(KC_S)
  ,HOME_W  // pseudo GUI_T(KC_W)
-#endif
-#ifdef HASKELL
- ,HS_GT   // pseudo SFT_T(S(KC_DOT))
- ,HS_LT   // pseudo CTL_T(S(KC_COMM))
 #endif
  ,AST_G   // pseudo MT   (MOD_LALT | MOD_LSFT, S(KC_G))
 #ifdef UPPER_HEX
@@ -170,14 +129,6 @@ enum keyboard_keycodes {
 #endif
 #define _______ KC_NO
 
-#ifdef HASKELL
-#define HS_GT   TD_GT
-#define HS_LT   TD_LT
-#else
-#define HS_GT   KC_GT
-#define HS_LT   KC_LT
-#endif
-
 #define COPY    LCTL(KC_C)
 #define CUT     LCTL(KC_X)
 #define EOT     LCTL(KC_D)
@@ -211,9 +162,6 @@ enum keyboard_keycodes {
 #define TGL_TR  TT  (_TTREGEX)
 #define TGL_HR  TT  (_TTNUMBER)
 #define TGL_BR  TT  (_TTCURSOR)
-#ifdef PLANCK
-#define MO_ADJ  MO  (_ADJUST)
-#endif
 
 #ifdef TEST
 #define DEBUG   TG  (_TEST)
@@ -229,9 +177,6 @@ enum keyboard_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #include "base_layout.h"
-#ifdef PLANCK
-#include "steno_layout.h"
-#endif
 
 // ...................................................... Number / Function Keys
 
@@ -251,11 +196,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-#ifdef PLANCK
-// ...................................................................... Sounds
-
-#include "sounds.h"
-#endif
 
 // User Keycode Trap
 // ═════════════════════════════════════════════════════════════════════════════

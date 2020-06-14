@@ -12,10 +12,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  ,[_COMM]   = ACTION_TAP_DANCE_FN              (comma)
  ,[_DOT]    = ACTION_TAP_DANCE_FN              (dot)
  ,[_EQL]    = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, equal, equal_reset, HASKELL_TERM)
-#ifdef HASKELL
- ,[_GT]     = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, greater, greater_reset, HASKELL_TERM)
- ,[_LT]     = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, lesser, lesser_reset, HASKELL_TERM)
-#endif
  ,[_PASTE]  = ACTION_TAP_DANCE_FN_ADVANCED     (NULL, paste, paste_reset)
  ,[_PERC]   = ACTION_TAP_DANCE_FN_ADVANCED     (NULL, percent, percent_reset)
  ,[_PRIV]   = ACTION_TAP_DANCE_FN              (private)
@@ -81,34 +77,6 @@ void equal_reset(STATE, void *user_data)
 #define DOUBLE_SHIFT(k, s) if (TAP_DOWN)          { register_shift(k); } \
                            else if (TAP == 2)     { send_string(s); }    \
                            else REPEAT(tap_shift, k);
-
-#ifdef HASKELL
-void greater(STATE, void *user_data)
-{
-  if (TAPS) { DOUBLE_SHIFT(KC_DOT, " -> "); }
-  else      { TAP_DOWN ? register_code(KC_LSFT) : double_tap(TAP, SHIFT, KC_DOT); }
-  reset_tap_dance(state);
-}
-
-void greater_reset(STATE, void *user_data)
-{
-  unregister_shift(KC_DOT);
-  unregister_code (KC_LSFT);
-}
-
-void lesser(STATE, void *user_data)
-{
-  if (TAPS) { DOUBLE_SHIFT(KC_COMM, " <- "); }
-  else      { TAP_DOWN ? register_code(KC_LCTL) : double_tap(TAP, SHIFT, KC_COMM); }
-  reset_tap_dance(state);
-}
-
-void lesser_reset(STATE, void *user_data)
-{
-  unregister_shift(KC_COMM);
-  unregister_code (KC_LCTL);
-}
-#endif
 
 void tilde(STATE, void *user_data)
 {
