@@ -3,6 +3,16 @@
 
 #include "../../config.h"
 
+#define SOFT_SERIAL_PIN D0
+#define MASTER_LEFT
+
+#undef MATRIX_COL_PINS
+#define MATRIX_COL_PINS { D4, C6, D7, E6, B4, D1 }
+#undef MATRIX_ROW_PINS
+#define MATRIX_ROW_PINS { F6, F7, B1, B3, B2, B6 }
+#define MATRIX_COL_PINS_RIGHT { D4, C6, D7, E6, B4, B5 }
+#define MATRIX_ROW_PINS_RIGHT { F6, F7, B1, B3, B2, B6 }
+
 // prevent holdback of 1-3 key TxBolt chords
 #define PREVENT_STUCK_MODIFIERS
 // fix dual function timing

@@ -229,7 +229,7 @@ bool mod_roll(RECORD, uint8_t side, uint8_t shift, uint16_t modifier, uint16_t k
   return false;
 }
 
-// down -> always shift (versus SFT_t auto repeat), 
+// down -> always shift (versus SFT_t auto repeat),
 void mod_t(RECORD, uint16_t modifier, uint16_t keycode)
 {
   if (KEY_DOWN) { KEY_TIMER; register_modifier(modifier); }
@@ -321,7 +321,7 @@ bool leader_cap(RECORD, uint8_t layer, uint8_t leadercap, uint16_t keycode)
       tap_key      (keycode);
       oneshot_shift(layer);
       key_timer = 0;
-      return true; 
+      return true;
     }
     key_timer = 0;
   }
@@ -392,7 +392,7 @@ bool raise_layer(RECORD, uint8_t layer, uint8_t side, uint8_t toggle)
 {
   if (KEY_DOWN) {
     double_key |= side;
-    if (double_key == (LEFT | RIGHT)) { 
+    if (double_key == (LEFT | RIGHT)) {
       if (layer) { toggle ? layer_invert(layer) : layer_on(layer); }
       return true;
     }
@@ -403,69 +403,3 @@ bool raise_layer(RECORD, uint8_t layer, uint8_t side, uint8_t toggle)
   return false;
 }
 
-#if STENO
-// .............................................................. Rolling Layers
-
-// rolling thumb combinations, see process_record_user()
-// up,   up   -> _BASE
-// up,   down -> _SYMGUI
-// down, up   -> _REGEX
-// down, down -> _MOUSE, see layer keycodes that raise mouse layer
-
-static uint8_t leftside  = 0;
-static uint8_t rightside = 0;
-
-#define SWITCH_LAYER(x, y) layer_off(x); \
-                           x = 0;        \
-                           if (y && y == _MOUSE) { layer_on(facing); y = facing; }
-
-// seamlessly switch left / right thumb layer combinations
-void rolling_layer(RECORD, uint8_t side, uint8_t shift, uint16_t keycode, uint8_t layer, uint8_t facing)
-{
-  if (KEY_DOWN) {
-    layer_on(layer);
-    if (side == LEFT)       { leftside = layer; }
-    else                    { rightside = layer; }
-    KEY_TIMER;
-  } else {
-    layer_off(_MOUSE);
-    if (keycode && KEY_TAP) { mod_key(shift, keycode); }
-    if (side == LEFT)       { SWITCH_LAYER(leftside, rightside); }
-    else                    { SWITCH_LAYER(rightside, leftside); }
-    // clear_mods();
-    key_timer = 0;
-  }
-}
-
-// ....................................................................... Steno
-
-void steno(RECORD)
-{
-  if (KEY_DOWN) {
-#ifdef AUDIO_ENABLE
-    PLAY_SONG(song_plover);
-#endif
-    clear_layers();
-    layer_on(_PLOVER);
-#ifndef STENO_ENABLE
-    if (!eeconfig_is_enabled()) { eeconfig_init(); }
-    keymap_config.raw  = eeconfig_read_keymap();
-    keymap_config.nkro = 1;
-    eeconfig_update_keymap(keymap_config.raw);
-#endif
-    toggle_plover(1);
-  }
-}
-
-static uint8_t plover = 0;  // plover application run state (0) off (1) on, see wm keybinds
-
-void toggle_plover(uint8_t state)
-{
-  if (plover != state) {
-#ifdef PLOVER_KEYBIND
-#include "plover_keybind.h"
-#endif
-    plover = state;
-  }
-}
-#endif

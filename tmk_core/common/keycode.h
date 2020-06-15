@@ -71,7 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Short names for ease of definition of keymap
  */
 /* Transparent */
-#define KC_TRANSPARENT 0x01
+#define KC_TRANSPARENT (0x01)
 #define KC_TRNS KC_TRANSPARENT
 
 /* Punctuation */

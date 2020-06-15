@@ -1,5 +1,8 @@
 
 // const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+#include "5x6.h"
+#define HS_LT S(KC_COMM)
+#define HS_GT S(KC_DOT)
 
 // .................................................. Symbols / Navigation Layer
 
