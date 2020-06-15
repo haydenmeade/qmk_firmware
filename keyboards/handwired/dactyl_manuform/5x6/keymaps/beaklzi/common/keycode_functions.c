@@ -292,26 +292,6 @@ bool map_shift(RECORD, uint16_t shift_key, uint8_t shift, uint16_t keycode)
   return false;
 }
 
-#if STENO
-// conditional map_shift pass through on keycode down to complete lt(), see process_record_user()
-bool mapc_shift(RECORD, uint16_t shift_key, uint8_t shift, uint16_t keycode)
-{
-  if (mod_down(shift_key)) {
-    if (KEY_DOWN) { KEY_TIMER; }
-    else {
-      if (KEY_TAP) {
-        if (!shift) { unregister_code(shift_key); }               // in event of unshifted keycode
-        tap_key(keycode);
-        if (!shift) { register_code(shift_key); reshifted = 1; }  // set SFT_T timing trap, process_record_user()
-      }
-      key_timer = 0;  // clear home row shift, see process_record_user() and sft_home()
-      return true;
-    }
-  }
-  return false;
-}
-#endif
-
 // LT (LAYER, KEY) -> <leader><SHIFT>, see process_record_user() and TD_TILD, KC_EXLM, KC_QUES
 bool leader_cap(RECORD, uint8_t layer, uint8_t leadercap, uint16_t keycode)
 {

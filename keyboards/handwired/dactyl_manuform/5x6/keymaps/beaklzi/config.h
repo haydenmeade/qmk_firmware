@@ -36,21 +36,19 @@
 #define PUBLIC_STRING ""
 
 // language tap dance operators
-#define HASKELL
 #define UNIX
-#define EMOJI
 
 // test all keyswitches
 // #define TEST
 
 // rolling home row modifiers (replaces LGUI_T, LCTL_T, LALT_T qmk macros)
-#define ROLLOVER
+//#define ROLLOVER
 
 // left handed space/enter
 // #define LEFT_SPC_ENT
 
 // double tap "=="
-#define EQLEQL "=~"
+#define EQLEQL "=="
 
 // upper case hex (idefault lower case abcdef)
 // #define UPPER_HEX

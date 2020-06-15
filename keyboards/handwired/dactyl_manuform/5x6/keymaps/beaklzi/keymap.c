@@ -188,11 +188,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // ............................................................... Toggle Layers
 
-// #include "common/toggle_layout.h"
+#include "common/toggle_layout.h"
 
 // .............................................................. Mouse / Chords
 
-// #include "common/mouse_chord_layout.h"
+#include "common/mouse_chord_layout.h"
 
 };
 
