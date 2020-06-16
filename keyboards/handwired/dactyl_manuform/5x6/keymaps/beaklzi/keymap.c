@@ -139,13 +139,13 @@ enum keyboard_keycodes {
 #define XPASTE  TD_XPASTE
 
 #define LT_BSPC LT  (_MOUSE, KC_BSPC)
-#define LT_ESC  LT  (_FNCKEY, KC_ESC)
+#define LT_ESC  LT  (_EDIT, KC_ESC)
 #ifdef ROLLOVER
 #define LT_ENT  MO  (_EDIT)    // plus mod_roll() -> LT(_EDIT, KC_ENT)
 #define LT_I    MO  (_REGEX)   // plus mod_roll() -> LT(_REGEX, KC_I)
 #define LT_SPC  MO  (_SYMGUI)  // plus mod_roll() -> LT(_SYMGUI, KC_SPC)
 #else
-#define LT_ENT  LT  (_EDIT, KC_ENT)
+#define LT_ENT  LT  (_FNCKEY, KC_ENT)
 #define LT_I    LT  (_REGEX, KC_I)
 #define LT_SPC  LT  (_SYMGUI, KC_SPC)
 #endif
