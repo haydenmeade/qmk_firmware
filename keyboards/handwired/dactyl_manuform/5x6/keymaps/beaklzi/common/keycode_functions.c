@@ -331,14 +331,8 @@ void clear_layers(void)
 void base_layer(uint8_t defer)
 {
   if (defer) { return; }  // see process_record_user() reset keys
-#ifdef AUDIO_ENABLE
-  plover ? PLAY_SONG(song_plover_gb) : PLAY_SONG(song_qwerty);
-#endif
   clear_layers();
   set_single_persistent_default_layer(_BASE);
-#if STENO
-  toggle_plover(0);
-#endif
 }
 
 // LT macro for mapc_shift(), see process_record_user()
