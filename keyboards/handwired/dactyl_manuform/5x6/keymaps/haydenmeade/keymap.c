@@ -3,22 +3,16 @@
 #include QMK_KEYBOARD_H
 #include "layers/layers_definitions.c"
 #include "hayden.h"
-#include "tap_dance/tap_dance_setup.c"
-#include "tap_dance/tap_dances.c"
-#include "tap_dance/mod_tap_layer_dances/dot_comm.c"
-#include "tap_dance/mod_tap_layer_dances/quot_dquot.c"
-#include "tap_dance/mod_tap_layer_dances/scln_coln.c"
-#include "tap_dance/tap_dance_actions.c"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [DVORAK] = LAYOUT_5x6_wrapper(
-     KC_CAPS  , __________________PROG_TD_L________________,       __________________PROG_TD_R________________, KC_DEL ,
+     KC_CAPS  , ________________NUMBERS_L__________________,       ________________NUMBERS_R__________________, KC_DEL ,
      KC_TAB   , _________________DVORAK_L1_________________,       _________________DVORAK_R1_________________, KC_SLSH,
      KC_LSPO  , _________________DVORAK_L2_________________,       _________________DVORAK_R2_________________, KC_MINS,
      KC_LGUI  , _________________DVORAK_L3_________________,       _________________DVORAK_R3_________________, KC_GRV ,
                             KC_HOME,KC_RGHT,                                 KC_UP, KC_A,
-                                             LT_ESC , LT_SPC,      KC_TAB    , KC_ENT,
+                                             KC_ESC , KC_SPC,      KC_TAB    , KC_ENT,
                                              CTL_ESC, MO(NUMPAD),  KC_EQL, MO(NUMPAD),
                                              KC_LALT, MO(NAV),     LT(GAMING, KC_DEL)  , KC_RSFT
   ),

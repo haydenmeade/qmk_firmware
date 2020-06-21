@@ -10,80 +10,6 @@
 
 // Ctrl when held, esc when pressed.
 #define CTL_ESC CTL_T(KC_ESC)
-#ifndef ROLLOVER
-#define HOME_Q  GUI_T(KC_Q)
-#define HOME_H  CTL_T(KC_H)
-#define HOME_E  ALT_T(KC_E)
-#define HOME_A  SFT_T(KC_A)
-#define HOME_T  SFT_T(KC_T)
-#define HOME_R  ALT_T(KC_R)
-#define HOME_S  CTL_T(KC_S)
-#define HOME_W  GUI_T(KC_W)
-#endif
-#ifndef UPPER_HEX
-#define ACT_E   MT   (MOD_LALT | MOD_LCTL, KC_E)
-#define AT_B    ALT_T(KC_B)
-#define CT_C    CTL_T(KC_C)
-#define ST_A    SFT_T(KC_A)
-#endif
-
-#include "tapdance.h"
-
-// keycodes
-#define ___x___ KC_TRNS
-#define ___fn__ KC_TRNS
-
-
-#ifdef HASKELL
-#define HS_GT   TD_GT
-#define HS_LT   TD_LT
-#else
-#define HS_GT   KC_GT
-#define HS_LT   KC_LT
-#endif
-
-#define COPY    LCTL(KC_C)
-#define CUT     LCTL(KC_X)
-#define EOT     LCTL(KC_D)
-#define NAK     LCTL(KC_U)
-#define PASTE   TD_PASTE
-#define UNDO    LCTL(KC_Z)
-#define XCOPY   LCTL(LSFT(KC_C))
-#define XPASTE  TD_XPASTE
-
-#define LT_BSPC LT  (_MOUSE, KC_BSPC)
-#define LT_ESC  LT  (_FNCKEY, KC_ESC)
-#ifdef ROLLOVER
-#define LT_ENT  MO  (_EDIT)    // plus mod_roll() -> LT(_EDIT, KC_ENT)
-#define LT_I    MO  (_REGEX)   // plus mod_roll() -> LT(_REGEX, KC_I)
-#define LT_SPC  MO  (_SYMGUI)  // plus mod_roll() -> LT(_SYMGUI, KC_SPC)
-#else
-#define LT_ENT  LT  (_EDIT, KC_ENT)
-#define LT_I    LT  (_REGEX, KC_I)
-#define LT_SPC  LT  (_SYMGUI, KC_SPC)
-#endif
-#define LT_TAB  LT  (_NUMBER, KC_TAB)
-#define TT_TAB  LT  (_NUMBER, KC_TAB)
-#define OS_ALT  OSM (MOD_LALT)
-#define OS_CTL  OSM (MOD_LCTL)
-#define OS_GUI  OSM (MOD_LGUI)
-#define OS_SFT  OSM (MOD_LSFT)
-
-#define TGL_TL  TT  (_TTFNCKEY)
-#define TGL_HL  TT  (_TTCAPS)
-#define TGL_BL  TT  (_TTMOUSE)
-#define TGL_TR  TT  (_TTREGEX)
-#define TGL_HR  TT  (_TTNUMBER)
-#define TGL_BR  TT  (_TTCURSOR)
-#ifdef PLANCK
-#define MO_ADJ  MO  (_ADJUST)
-#endif
-
-#ifdef TEST
-#define DEBUG   TG  (_TEST)
-#else
-#define DEBUG   RESET
-#endif
 
 #define ________MODIFIERS_________ KC_LGUI, KC_LCTL, KC_LSFT, KC_LALT
 
@@ -103,8 +29,6 @@
 // ,-----+-----+-----+-----+---------------,   ,-----+-----+-----+-----+---------------,
 // |  `/~  |  @/$  |  {/<  |  (/[  |  !/?  |   |  &/|  |  (/[  |  {/>  |  #/%  |  */^  |
 // ,-----+-----+-----+-----+---------------,   ,-----+-----+-----+-----+---------------,
-#define __________________PROG_TD_L________________  TD(GRV_TILD) , TD(AT_DLR), TD(LCBR_LABK), TD(LPRN_LBRC), TD(EXLM_QUES)
-#define __________________PROG_TD_R________________  TD(APMR_PIPE), TD(RPRN_RBRC), TD(RCBR_RABK), TD(HASH_PERC), TD(ASTR_CIRC)
 
 // ,-----+-----+-----+-----+-----,   ,-----+-----+-----+-----+-----,
 // | F1  | F2  | F3  | F4  | F5  |   | F6  | F7  | F8  | F9  | F10 |
