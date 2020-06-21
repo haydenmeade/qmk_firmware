@@ -88,8 +88,7 @@ enum keyboard_layers {
  ,_DVORAK
  ,_QWERTY
  ,_TTCAPS
- ,_SYMGUI
- ,_REGEX
+ ,_SYMBOL
  ,_MOUSE
  ,_NUMBER
  ,_FNCKEY
@@ -98,7 +97,7 @@ enum keyboard_layers {
  ,_TTCURSOR
  ,_TTMOUSE
  ,_TTNUMBER
- ,_TTREGEX
+ ,_TTSYMBOL
 #ifdef TEST
  ,_TEST
 #endif
@@ -131,10 +130,9 @@ enum keyboard_keycodes {
 
 #define COPY    LCTL(KC_C)
 #define CUT     LCTL(KC_X)
-#define EOT     LCTL(KC_D)
-#define NAK     LCTL(KC_U)
 #define PASTE   TD_PASTE
 #define UNDO    LCTL(KC_Z)
+#define REDO    LCTL(KC_Y)
 #define XCOPY   LCTL(LSFT(KC_C))
 #define XPASTE  TD_XPASTE
 
@@ -146,10 +144,11 @@ enum keyboard_keycodes {
 #define LT_BSPC LT  (_MOUSE, KC_BSPC)
 #define LT_ESC  LT  (_EDIT, KC_ESC)
 #define LT_ENT  LT  (_FNCKEY, KC_ENT)
-#define LT_I    LT  (_REGEX, KC_I)
-#define LT_SPC  LT  (_SYMGUI, KC_SPC)
+#define LT_I    LT  (_SYMBOL, KC_I)
+#define LT_SPC  LT  (_SYMBOL, KC_SPC)
 #define LT_TAB  LT  (_NUMBER, KC_TAB)
 #define TT_TAB  LT  (_NUMBER, KC_TAB)
+
 #define OS_ALT  OSM (MOD_LALT)
 #define OS_CTL  OSM (MOD_LCTL)
 #define OS_GUI  OSM (MOD_LGUI)
@@ -158,7 +157,7 @@ enum keyboard_keycodes {
 #define TGL_TL  TT  (_TTFNCKEY)
 #define TGL_HL  TT  (_TTCAPS)
 #define TGL_BL  TT  (_TTMOUSE)
-#define TGL_TR  TT  (_TTREGEX)
+#define TGL_TR  TT  (_TTSYMBOL)
 #define TGL_HR  TT  (_TTNUMBER)
 #define TGL_BR  TT  (_TTCURSOR)
 
@@ -183,7 +182,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // ......................................................... Symbol / Navigation
 
-#include "common/symbol_guifn_layout.h"
+#include "common/symbol_layout.h"
 
 // ............................................................... Toggle Layers
 
