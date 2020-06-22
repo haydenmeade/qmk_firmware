@@ -48,35 +48,18 @@
 // Hardware
 // ═════════════════════════════════════════════════════════════════════════════
 
-
 #include "5x6.h"
 
-#define LAYOUT_5x6(\
-  L00, L01, L02, L03, L04, L05,                          R00, R01, R02, R03, R04, R05, \
-  L10, L11, L12, L13, L14, L15,                          R10, R11, R12, R13, R14, R15, \
-  L20, L21, L22, L23, L24, L25,                          R20, R21, R22, R23, R24, R25, \
-  L30, L31, L32, L33, L34, L35,                          R30, R31, R32, R33, R34, R35, \
-            L42, L43,                                              R42, R43,           \
-                      L44, L45,                          R40, R41,                     \
-                                L54, L55,      R50, R51,                               \
-                                L52, L53,      R52, R53                                \
-  ) \
-  { \
-    { L00,   L01,   L02, L03, L04, L05 }, \
-    { L10,   L11,   L12, L13, L14, L15 }, \
-    { L20,   GUI_T(L21), CTL_T(L22), ALT_T(L23), L24, L25 }, \
-    { L30,   L31,   L32, L33, L34, L35 }, \
-    { KC_NO, KC_NO, L42, L43, L44, L45 }, \
-    { KC_NO, KC_NO, L52, L53, L54, L55 }, \
-                                          \
-    { R00, R01, R02, R03, R04,   R05   }, \
-    { R10, R11, R12, R13, R14,   R15   }, \
-    { R20, GUI_T(R21), CTL_T(R22), ALT_T(R23), R24, R25 }, \
-    { R30, R31, R32, R33, R34,   R35   }, \
-    { R40, R41, R42, R43, KC_NO, KC_NO }, \
-    { R50, R51, R52, R53, KC_NO, KC_NO }  \
-}
-#define KEYMAP(...)             LAYOUT_5x6(__VA_ARGS__)
+#undef LAYOUT_5x6
+#define LAYOUT_5x6(L00, L01, L02, L03, L04, L05, R00, R01, R02, R03, R04, R05, L10, L11, L12, L13, L14, L15, R10, R11, R12, R13, R14, R15, L20, L21, L22, L23, L24, L25, R20, R21, R22, R23, R24, R25, L30, L31, L32, L33, L34, L35, R30, R31, R32, R33, R34, R35, L42, L43, R42, R43, L44, L45, R40, R41, L54, L55, R50, R51, L52, L53, R52, R53) \
+    {                                                                                                                                                                                                                                                                                                                                              \
+        {L00, L01, L02, L03, L04, L05}, {L10, L11, L12, L13, L14, L15}, {L20, GUI_T(L21), CTL_T(L22), ALT_T(L23), L24, L25}, {L30, L31, L32, L33, L34, L35}, {KC_NO, KC_NO, L42, L43, L44, L45}, {KC_NO, KC_NO, L52, L53, L54, L55},                                                                                                               \
+                                                                                                                                                                                                                                                                                                                                                   \
+            {R00, R01, R02, R03, R04, R05}, {R10, R11, R12, R13, R14, R15}, {R20, GUI_T(R21), CTL_T(R22), ALT_T(R23), R24, R25}, {R30, R31, R32, R33, R34, R35}, {R40, R41, R42, R43, KC_NO, KC_NO}, {                                                                                                                                             \
+            R50, R51, R52, R53, KC_NO, KC_NO                                                                                                                                                                                                                                                                                                       \
+        }                                                                                                                                                                                                                                                                                                                                          \
+    }
+#define KEYMAP(...) LAYOUT_5x6(__VA_ARGS__)
 
 // Keymaps
 // ═════════════════════════════════════════════════════════════════════════════
@@ -84,39 +67,44 @@
 extern keymap_config_t keymap_config;
 
 enum keyboard_layers {
-  _BASE = 0,
- ,_DVORAK
- ,_QWERTY
- ,_TTCAPS
- ,_SYMBOL
- ,_MOUSE
- ,_NUMBER
- ,_FNCKEY
- ,_EDIT
- ,_TTFNCKEY
- ,_TTCURSOR
- ,_TTMOUSE
- ,_TTNUMBER
- ,_TTSYMBOL
+    _BASE = 0,
+    _DVORAK,
+    _QWERTY,
+    _TTCAPS,
+    _SYMBOL,
+    _MOUSE,
+    _NUMBER,
+    _FNCKEY,
+    _EDIT,
+    _TTFNCKEY,
+    _TTCURSOR,
+    _TTMOUSE,
+    _TTNUMBER,
+    _TTSYMBOL
 #ifdef TEST
- ,_TEST
+    ,
+    _TEST
 #endif
- ,_END_LAYERS
+    ,
+    _END_LAYERS
 };
 
 enum keyboard_keycodes {
-  BASE = SAFE_RANGE
- ,AST_G   // pseudo MT   (MOD_LALT | MOD_LSFT, S(KC_G))
- ,ST_T    // pseudo SFT_T(S(KC_T))
- ,TT_ESC
- ,TT_I    // pseudo LT(_REGEX, S(KC_I))
- ,TT_SPC  // pseudo LT(_SYMGUI, KC_SPC)
+    BASE = SAFE_RANGE,
+    AST_G  // pseudo MT   (MOD_LALT | MOD_LSFT, S(KC_G))
+    ,
+    ST_T  // pseudo SFT_T(S(KC_T))
+    ,
+    TT_ESC,
+    TT_I  // pseudo LT(_REGEX, S(KC_I))
+    ,
+    TT_SPC  // pseudo LT(_SYMGUI, KC_SPC)
 };
 
-#define ACT_E   MT   (MOD_LALT | MOD_LCTL, KC_E)
-#define AT_B    ALT_T(KC_B)
-#define CT_C    CTL_T(KC_C)
-#define ST_A    SFT_T(KC_A)
+#define ACT_E MT(MOD_LALT | MOD_LCTL, KC_E)
+#define AT_B ALT_T(KC_B)
+#define CT_C CTL_T(KC_C)
+#define ST_A SFT_T(KC_A)
 
 #include "common/tapdance.h"
 
@@ -124,47 +112,47 @@ enum keyboard_keycodes {
 #define ___x___ KC_TRNS
 #define ___fn__ KC_TRNS
 #ifdef _______
-#undef _______
+#    undef _______
 #endif
 #define _______ KC_NO
 
-#define COPY    LCTL(KC_C)
-#define CUT     LCTL(KC_X)
-#define PASTE   TD_PASTE
-#define UNDO    LCTL(KC_Z)
-#define REDO    LCTL(KC_Y)
-#define XCOPY   LCTL(LSFT(KC_C))
-#define XPASTE  TD_XPASTE
+#define COPY LCTL(KC_C)
+#define CUT LCTL(KC_X)
+#define PASTE TD_PASTE
+#define UNDO LCTL(KC_Z)
+#define REDO LCTL(KC_Y)
+#define XCOPY LCTL(LSFT(KC_C))
+#define XPASTE TD_XPASTE
 
 #define HOME_A SFT_T(KC_A)
 #define HOME_S SFT_T(KC_S)
 #define HOME_U SFT_T(KC_U)
 #define HOME_H SFT_T(KC_H)
 
-#define LT_BSPC LT  (_MOUSE, KC_BSPC)
-#define LT_ESC  LT  (_EDIT, KC_ESC)
-#define LT_ENT  LT  (_FNCKEY, KC_ENT)
-#define LT_I    LT  (_SYMBOL, KC_I)
-#define LT_SPC  LT  (_SYMBOL, KC_SPC)
-#define LT_TAB  LT  (_NUMBER, KC_TAB)
-#define TT_TAB  LT  (_NUMBER, KC_TAB)
+#define LT_BSPC LT(_MOUSE, KC_BSPC)
+#define LT_ESC LT(_EDIT, KC_ESC)
+#define LT_ENT LT(_FNCKEY, KC_ENT)
+#define LT_I LT(_SYMBOL, KC_I)
+#define LT_SPC LT(_SYMBOL, KC_SPC)
+#define LT_TAB LT(_NUMBER, KC_TAB)
+#define TT_TAB LT(_NUMBER, KC_TAB)
 
-#define OS_ALT  OSM (MOD_LALT)
-#define OS_CTL  OSM (MOD_LCTL)
-#define OS_GUI  OSM (MOD_LGUI)
-#define OS_SFT  OSM (MOD_LSFT)
+#define OS_ALT OSM(MOD_LALT)
+#define OS_CTL OSM(MOD_LCTL)
+#define OS_GUI OSM(MOD_LGUI)
+#define OS_SFT OSM(MOD_LSFT)
 
-#define TGL_TL  TT  (_TTFNCKEY)
-#define TGL_HL  TT  (_TTCAPS)
-#define TGL_BL  TT  (_TTMOUSE)
-#define TGL_TR  TT  (_TTSYMBOL)
-#define TGL_HR  TT  (_TTNUMBER)
-#define TGL_BR  TT  (_TTCURSOR)
+#define TGL_TL TT(_TTFNCKEY)
+#define TGL_HL TT(_TTCAPS)
+#define TGL_BL TT(_TTMOUSE)
+#define TGL_TR TT(_TTSYMBOL)
+#define TGL_HR TT(_TTNUMBER)
+#define TGL_BR TT(_TTCURSOR)
 
 #ifdef TEST
-#define DEBUG   TG  (_TEST)
+#    define DEBUG TG(_TEST)
 #else
-#define DEBUG   KC_NO
+#    define DEBUG KC_NO
 #endif
 
 // Layers
@@ -194,162 +182,103 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-
 // User Keycode Trap
 // ═════════════════════════════════════════════════════════════════════════════
 
 #include "common/keycode_functions.c"
 #include "common/tapdance.c"
 
-static uint8_t dual_down = 0;  // dual keys down (2 -> 1 -> 0) reset on last up stroke, see TGL_TL, TGL_TR
-#ifdef UNIX
 static uint16_t td_timer = 0;  // pseudo tapdance timer
+#define UNUSED(x) (void)(x)
+#define TAPDANCE                                                              \
+    if (KEY_DOWN) {                                                           \
+        td_timer = timer_elapsed(td_timer) < TAPPING_TERM ? 0 : timer_read(); \
+    }
 
-#define TAPDANCE if (KEY_DOWN) { td_timer = timer_elapsed(td_timer) < TAPPING_TERM ? 0 : timer_read(); }
-#endif
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    UNUSED(td_timer);
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record)
-{
+    if (reshifted && !mod_down(KC_LSFT)) {
+        unregister_code(KC_LSFT);
+        reshifted = 0;
+    }
 
-  if (reshifted && !mod_down(KC_LSFT)) { unregister_code(KC_LSFT); reshifted = 0; }  // see map_shift()
+    // ........................................................ Home Row Modifiers
 
-  // ........................................................ Home Row Modifiers
+    switch (keycode) {
+        case HOME_A:
+        case HOME_U:
+            mod_bits(record, KC_LSFT);
+            break;
+        case HOME_S:
+        case HOME_H:
+            mod_bits(record, KC_RSFT);
+            break;
 
-  switch (keycode) {
-  case HOME_A, HOME_U:
-    leadercap = KEY_DOWN ? 1 : 0;  // space/enter + shift shortcut, see leader_cap()
-    mod_bits(record, KC_LSFT);                          break;
-  case HOME_S, HOME_H:
-    mod_bits(record, KC_RSFT);                          break;
+            // ............................................................. Toggle Layers
 
-  // ............................................................. Toggle Layers
+        case TGL_TL:
+        case TGL_TR:
+        case TGL_HL:
+        case TGL_HR:
+        case TGL_BL:
+        case TGL_BR:
+            tt_escape(record, keycode);
+            break;
 
-  case TGL_TL:
-    if (raise_layer(record, 0, LEFT, TOGGLE))  { dual_down = 2; return false; }  // defer reset!
-    if (dual_down)                             { dual_down--; base_layer(dual_down); return false; }
-    tt_escape(record, keycode);
-    break;
-  case TGL_TR:
-    if (raise_layer(record, 0, RIGHT, TOGGLE)) { dual_down = 2; return false; }  // defer reset!
-    if (dual_down)                             { dual_down--; base_layer(dual_down); return false; }
-    tt_escape(record, keycode);
-    break;
-  case TGL_HL:
-  case TGL_HR:
-  case TGL_BL:
-  case TGL_BR:
-    tt_escape(record, keycode);
-    break;
+            // ........................................................... Left Thumb Keys
 
-  // ........................................................... Left Thumb Keys
+        case TT_ESC:
+            base_layer(0);
+            return false;  // exit TT layer
+        case LT_ESC:
+            if (tt_keycode) {
+                base_layer(0);
+                return false;
+            }
+            break;
 
-  case TT_ESC:
-    base_layer(0);                                   return false;      // exit TT layer
-  case LT_ESC:
-    if (tt_keycode)                                  { base_layer(0); return false; }
-    break;
+        case LT_I:
+            break;
+        case TT_I:
+            lt(record, _SYMBOL, SHIFT, KC_I);
+            break;
+        case S(KC_I):
+            if (!KEY_DOWN) {
+                CLR_1SHOT;
+            }  // see leader_cap()
+            break;
 
-  case LT_I:
-#ifdef LEFT_SPC_ENT
-    if (map_shift(record, KC_LSFT, NOSHIFT, KC_SPC)) { return false; }
-#endif
-    break;
-  case TT_I:
-    lt(record, _REGEX, SHIFT, KC_I);                 break;
-  case S(KC_I):
-#ifdef LEFT_SPC_ENT
-    if (map_shift(record, KC_LSFT, NOSHIFT, KC_SPC)) { return false; }
-#endif
-    if (!KEY_DOWN)                                   { CLR_1SHOT; }     // see leader_cap()
-    break;
+            // .......................................................... Right Thumb Keys
 
-  case LT_TAB:
-#ifdef LEFT_SPC_ENT
-    if (map_shift(record, KC_LSFT, NOSHIFT, KC_ENT)) { return false; }
-#endif
-    if (map_shift(record, KC_RSFT, SHIFT, KC_TAB))   { return false; }
-    break;
+        case TT_SPC:
+            lt(record, _SYMBOL, NOSHIFT, KC_SPC);
+            break;
+        case KC_SPC:
+            if (!KEY_DOWN) {
+                CLR_1SHOT;
+            }  // see leader_cap()
+            break;
 
-  // .......................................................... Right Thumb Keys
-  case LT_ENT:
-    if (leader_cap(record, _EDIT, leadercap, KC_ENT))    { return false; }  // KC_ENT -> enter shift
-    break;
-  case KC_ENT:
-    if (leader_cap(record, 0, leadercap, KC_ENT))        { return false; }  // KC_ENT from LT_ENT -> enter enter* shift
-    break;
+        case LT_BSPC:
+        case KC_BSPC:
+            if (!KEY_DOWN) {
+                CLR_1SHOT;
+            }  // see leader_cap()
+            break;
 
-  case LT_SPC:
-    if (leader_cap(record, _SYMGUI, leadercap, KC_SPC))  { return false; }  // KC_SPC -> space shift
-    break;
+            // ................................................................ Other Keys
 
-  case TT_SPC:
-    lt(record, _SYMGUI, NOSHIFT, KC_SPC);
-    break;
-  case KC_SPC:
-    if (!KEY_DOWN)                                       { CLR_1SHOT; }     // see leader_cap()
-    break;
-
-  case LT_BSPC:
-  case KC_BSPC:
-    if (!KEY_DOWN)                                       { CLR_1SHOT; }     // see leader_cap()
-    if (map_shift(record, KC_LSFT, NOSHIFT, KC_DEL))     { layer_off(_SYMGUI); return false; }  // rolling cursor to del
-    if (map_shift(record, KC_RSFT, NOSHIFT, KC_DEL))     { return false; }
-    break;
-
-  // ............................................................. Modifier Keys
-
-  case AST_G:
-    mt_shift(record, KC_LALT, KC_LSFT, KC_G); break;
-  case ST_T:
-    mt_shift(record, KC_RSFT, 0, KC_T);       break;
-
-  // ......................................................... Shift Mapped Keys
-
-  case KC_COLN:
-    leadercap = KEY_DOWN ? 1 : 0;  // semi/colon + space/enter + shift shortcut, see leader_cap()
-    if (map_shift(record, KC_RSFT, NOSHIFT, KC_COLN))           { return false; }
-    break;
-  case TD_COLN:
-    if (mod_down(KC_RSFT))                                      { unregister_code(KC_RSFT); }  // *must* un-shift before tap dance processing to register unshifted keycodes
-    leadercap = KEY_DOWN ? 1 : 0;  // semi/colon + space/enter + shift shortcut, see leader_cap()
-    break;
-
-  case KC_COMM:
-    leadercap = KEY_DOWN ? 1 : 0;  // comma + space/enter + shift shortcut, see leader_cap()
-    if (map_shift(record, KC_RSFT, NOSHIFT, KC_GRV))            { return false; }
-    break;
-  case KC_DOT:
-    leadercap = KEY_DOWN ? 1 : 0;  // dot + space/enter + shift shortcut, see leader_cap()
-#ifdef UNIX
-    TAPDANCE; if (map_shift(record, KC_RSFT, td_timer ? SHIFT : NOSHIFT, td_timer ? KC_GRV : KC_SLSH)) { return false; }  // pseudo tapdance ~ -> ~/
-#else
-    if (map_shift(record, KC_RSFT, SHIFT, KC_GRV))              { return false; }
-#endif
-    break;
-
-  // ..................................................... Leader Capitalization
-
-  case KC_EXLM:
-  case KC_QUES:
-    leadercap = KEY_DOWN ? 1 : 0;  // exclamation/question + space/enter + shift shortcut, see leader_cap()
-    break;
-
-  // .............................................................. Top Row Keys
-
-
-  // ................................................................ Other Keys
-
-  default:
-    if (!KEY_DOWN) { CLR_1SHOT; }  // see leader_cap()
-    key_timer = 0;                 // regular keycode, clear timer in keycode_functions.h
-  }
-  return true;
+        default:
+            if (!KEY_DOWN) {
+                CLR_1SHOT;
+            }               // see leader_cap()
+            key_timer = 0;  // regular keycode, clear timer in keycode_functions.h
+    }
+    return true;
 }
 
 // Initialization
 // ═════════════════════════════════════════════════════════════════════════════
 
-void matrix_init_user(void)
-{
-  base_layer(0);
-}
+void matrix_init_user(void) { base_layer(0); }

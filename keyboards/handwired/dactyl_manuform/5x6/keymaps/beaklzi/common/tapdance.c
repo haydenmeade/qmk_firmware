@@ -11,7 +11,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  ,[_COLN]   = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, colon, colon_reset, HASKELL_TERM)
  ,[_COMM]   = ACTION_TAP_DANCE_FN              (comma)
  ,[_DOT]    = ACTION_TAP_DANCE_FN              (dot)
- ,[_EQL]    = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, equal, equal_reset, HASKELL_TERM)
  ,[_PASTE]  = ACTION_TAP_DANCE_FN_ADVANCED     (NULL, paste, paste_reset)
  ,[_PERC]   = ACTION_TAP_DANCE_FN_ADVANCED     (NULL, percent, percent_reset)
  ,[_PRIV]   = ACTION_TAP_DANCE_FN              (private)
@@ -35,11 +34,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 void colon(STATE, void *user_data)
 {
   if (mod_down(KC_RSFT)) {  // handle like map_shift()
-#ifdef EMOJI
-    if (TAPS)          { DOUBLE_TAP(KC_SCLN, " :-"); }
-#else
     if (TAPS)          { REPEAT(tap_key, KC_SCLN); }
-#endif
     else               { TAP_DOWN ? register_code(KC_SCLN) : double_tap(TAP, NOSHIFT, KC_SCLN); }
   } else if (TAPS) {
     if (TAP_DOWN)      { register_shift(KC_SCLN); }
@@ -55,23 +50,6 @@ void colon_reset(STATE, void *user_data)
 {
   unregister_shift(KC_SCLN);
   if (mod_down(KC_RSFT)) { register_code(KC_RSFT); }  // restore HOME_T, see process_record_user() TD_COLN
-}
-
-void equal(STATE, void *user_data)
-{
-  if (TAPS) { DOUBLE_TAP(KC_EQL, EQLEQL); }
-#if NONSTENO
-  else      { TAP_DOWN ? register_code(KC_EQL) : double_tap(TAP, NOSHIFT, KC_EQL); }
-#else
-  else      { TAP_DOWN ? layer_on(_MOUSE) : double_tap(TAP, NOSHIFT, KC_EQL); }
-#endif
-  reset_tap_dance(state);
-}
-
-void equal_reset(STATE, void *user_data)
-{
-  unregister_code(KC_EQL);
-  layer_off      (_MOUSE);
 }
 
 #define DOUBLE_SHIFT(k, s) if (TAP_DOWN)          { register_shift(k); } \
