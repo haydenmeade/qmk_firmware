@@ -6,7 +6,6 @@
 
 // ................................................................ Global Scope
 
-static uint8_t  reshifted  = 0;  // SFT_T timing trap, see map_shift(), process_record_user()
 static uint16_t tt_keycode = 0;  // current TT keycode
 
 #define CLR_1SHOT clear_oneshot_layer_state(ONESHOT_PRESSED)

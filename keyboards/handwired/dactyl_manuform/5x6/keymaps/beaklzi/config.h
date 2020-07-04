@@ -13,7 +13,7 @@
 #define IGNORE_MOD_TAP_INTERRUPT
 
 // tap dance key press termination interval
-#define TAPPING_TERM 250
+#define TAPPING_TERM 200
 #define HASKELL_TERM 200
 
 // smooth mouse motion
@@ -24,7 +24,7 @@
 // #define MOUSEKEY_WHEEL_DELAY 0
 
 // compile time macro strings, see functions/hardware qmk script
-#define PRIVATE_STRING ""
+#define PRIVATE_STRING "mysmellyoldsocks"
 #define PUBLIC_STRING ""
 
 // language tap dance operators

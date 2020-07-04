@@ -50,16 +50,7 @@
 
 #include "5x6.h"
 
-#undef LAYOUT_5x6
-#define LAYOUT_5x6(L00, L01, L02, L03, L04, L05, R00, R01, R02, R03, R04, R05, L10, L11, L12, L13, L14, L15, R10, R11, R12, R13, R14, R15, L20, L21, L22, L23, L24, L25, R20, R21, R22, R23, R24, R25, L30, L31, L32, L33, L34, L35, R30, R31, R32, R33, R34, R35, L42, L43, R42, R43, L44, L45, R40, R41, L54, L55, R50, R51, L52, L53, R52, R53) \
-    {                                                                                                                                                                                                                                                                                                                                              \
-        {L00, L01, L02, L03, L04, L05}, {L10, L11, L12, L13, L14, L15}, {L20, GUI_T(L21), CTL_T(L22), ALT_T(L23), L24, L25}, {L30, L31, L32, L33, L34, L35}, {KC_NO, KC_NO, L42, L43, L44, L45}, {KC_NO, KC_NO, L52, L53, L54, L55},                                                                                                               \
-                                                                                                                                                                                                                                                                                                                                                   \
-            {R00, R01, R02, R03, R04, R05}, {R10, R11, R12, R13, R14, R15}, {R20, GUI_T(R21), CTL_T(R22), ALT_T(R23), R24, R25}, {R30, R31, R32, R33, R34, R35}, {R40, R41, R42, R43, KC_NO, KC_NO}, {                                                                                                                                             \
-            R50, R51, R52, R53, KC_NO, KC_NO                                                                                                                                                                                                                                                                                                       \
-        }                                                                                                                                                                                                                                                                                                                                          \
-    }
-#define KEYMAP(...) LAYOUT_5x6(__VA_ARGS__)
+#define KEYMAP LAYOUT_5x6
 
 // Keymaps
 // ═════════════════════════════════════════════════════════════════════════════
@@ -99,6 +90,12 @@ enum keyboard_keycodes {
     TT_I  // pseudo LT(_REGEX, S(KC_I))
     ,
     TT_SPC  // pseudo LT(_SYMGUI, KC_SPC)
+    ,
+    CM_EXL  // comma / exclamation
+    ,
+    DT_ADD  // dot / at
+    ,
+    QUOT_DSH  // ' /
 };
 
 #define ACT_E MT(MOD_LALT | MOD_LCTL, KC_E)
@@ -116,6 +113,8 @@ enum keyboard_keycodes {
 #endif
 #define _______ KC_NO
 
+#define VSVIM LALT(LCTL(LSFT(KC_F12)))
+#define REMOTE LCTL(LALT(KC_HOME))
 #define COPY LCTL(KC_C)
 #define CUT LCTL(KC_X)
 #define PASTE TD_PASTE
@@ -187,93 +186,51 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #include "common/keycode_functions.c"
 #include "common/tapdance.c"
-
-static uint16_t td_timer = 0;  // pseudo tapdance timer
-#define UNUSED(x) (void)(x)
-#define TAPDANCE                                                              \
-    if (KEY_DOWN) {                                                           \
-        td_timer = timer_elapsed(td_timer) < TAPPING_TERM ? 0 : timer_read(); \
-    }
-
+uint8_t mod_state;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    UNUSED(td_timer);
-
-    if (reshifted && !mod_down(KC_LSFT)) {
-        unregister_code(KC_LSFT);
-        reshifted = 0;
-    }
-
-    // ........................................................ Home Row Modifiers
-
+    mod_state = get_mods();
     switch (keycode) {
-        case HOME_A:
-        case HOME_U:
-            mod_bits(record, KC_LSFT);
+        case CM_EXL:  // comma / exclamation
+            if (KEY_DOWN) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    unregister_modifier(KC_LSFT);
+                    unregister_modifier(KC_RSFT);
+                    tap_code16(KC_EXLM);
+                    register_modifier(KC_LSFT);
+                }
+                else
+                {
+                     tap_code16(KC_COMMA);
+                }
+            }
             break;
-        case HOME_S:
-        case HOME_H:
-            mod_bits(record, KC_RSFT);
+        case DT_ADD:  // dot / at
+            if (KEY_DOWN) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    unregister_modifier(KC_LSFT);
+                    unregister_modifier(KC_RSFT);
+                    tap_code16(KC_AT);
+                    register_modifier(KC_LSFT);
+                } else {
+                    tap_code16(KC_DOT);
+                }
+            }
             break;
-
-            // ............................................................. Toggle Layers
-
-        case TGL_TL:
-        case TGL_TR:
-        case TGL_HL:
-        case TGL_HR:
-        case TGL_BL:
-        case TGL_BR:
-            tt_escape(record, keycode);
-            break;
-
-            // ........................................................... Left Thumb Keys
-
-        case TT_ESC:
-            base_layer(0);
-            return false;  // exit TT layer
-        case LT_ESC:
-            if (tt_keycode) {
-                base_layer(0);
-                return false;
+        case QUOT_DSH:  // quote /KC_GRAVE
+            if (KEY_DOWN) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    unregister_modifier(KC_LSFT);
+                    unregister_modifier(KC_RSFT);
+                    tap_code16(KC_GRAVE);
+                    register_modifier(KC_LSFT);
+                } else {
+                    tap_code16(KC_QUOTE);
+                }
             }
             break;
 
-        case LT_I:
-            break;
-        case TT_I:
-            lt(record, _SYMBOL, SHIFT, KC_I);
-            break;
-        case S(KC_I):
-            if (!KEY_DOWN) {
-                CLR_1SHOT;
-            }  // see leader_cap()
-            break;
-
-            // .......................................................... Right Thumb Keys
-
-        case TT_SPC:
-            lt(record, _SYMBOL, NOSHIFT, KC_SPC);
-            break;
-        case KC_SPC:
-            if (!KEY_DOWN) {
-                CLR_1SHOT;
-            }  // see leader_cap()
-            break;
-
-        case LT_BSPC:
-        case KC_BSPC:
-            if (!KEY_DOWN) {
-                CLR_1SHOT;
-            }  // see leader_cap()
-            break;
-
-            // ................................................................ Other Keys
-
         default:
-            if (!KEY_DOWN) {
-                CLR_1SHOT;
-            }               // see leader_cap()
-            key_timer = 0;  // regular keycode, clear timer in keycode_functions.h
+            break;
     }
     return true;
 }
