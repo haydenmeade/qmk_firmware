@@ -131,9 +131,9 @@ enum keyboard_keycodes {
 #define LT_BSPC LT(_MOUSE, KC_BSPC)
 #define LT_ESC LT(_EDIT, KC_ESC)
 #define LT_ENT LT(_FNCKEY, KC_ENT)
-#define LT_I LT(_SYMBOL, KC_I)
+#define LT_I LT(_NUMBER, KC_I)
 #define LT_SPC LT(_SYMBOL, KC_SPC)
-#define LT_TAB LT(_NUMBER, KC_TAB)
+#define LT_TAB SFT_T(KC_TAB)
 #define TT_TAB LT(_NUMBER, KC_TAB)
 
 #define OS_ALT OSM(MOD_LALT)
